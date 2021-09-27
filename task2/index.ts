@@ -1,59 +1,67 @@
-class person{
-    first_name:string
-    last_name:string
-    email:string
-    city:string
-    Address:string
-    constructor(first_name:string,last_name:string,email:string,city:string,Address:string){
-        this.first_name=first_name
-        this.last_name=last_name
-        this.email=email
-        this.city=city
-        this.Address=Address
-    }
-}
-let a1:person[]=[]
+
+let selectedRow=null;
 function details(){
-let first_name:string = document.getElementById("inp")[0].value
-let last_name:string = document.getElementById("inp")[1].value
-let email:string = document.getElementById("inp")[2].value
-let city:string = document.getElementById("inp")[3].value
-let Address:string = document.getElementById("inp")[4].value
-let obj=new person(first_name,last_name,email,city,Address)
-a1.push(obj)
-//document.getElementById("gr").innerHTML="welcome" 
-//let mybody = document.getElementsByTagName("table");
-let mybody = document.getElementById("tab");
-//let mytable = document.createElement("table");
-//let mytablebody = document.createElement("tbody");
-for(var j = 0; j < a1.length; j++) {
-    var mycurrent_row = document.createElement("tr");
-            var mycurrent_cell = document.createElement("td");
-              var currenttext = document.createTextNode(a1[j].first_name);
-                mycurrent_cell.appendChild(currenttext);
-                mycurrent_row.appendChild(mycurrent_cell);
-              var mycurrent_cell = document.createElement("td");
-              var currenttext = document.createTextNode(a1[j].last_name);
-                mycurrent_cell.appendChild(currenttext);
-                mycurrent_row.appendChild(mycurrent_cell);
-              var mycurrent_cell = document.createElement("td");
-              var currenttext = document.createTextNode(a1[j].email);
-                mycurrent_cell.appendChild(currenttext);
-                mycurrent_row.appendChild(mycurrent_cell);
-              var mycurrent_cell = document.createElement("td");
-              var currenttext = document.createTextNode(a1[j].city);
-                mycurrent_cell.appendChild(currenttext);
-                mycurrent_row.appendChild(mycurrent_cell);
-            var mycurrent_cell = document.createElement("td");
-              var currenttext = document.createTextNode(a1[j].Address);
-                mycurrent_cell.appendChild(currenttext);
-                mycurrent_row.appendChild(mycurrent_cell);
-            //mytablebody.appendChild(mycurrent_row);
-        }
 
-        //mytable.appendChild(mytablebody);
-        //mybody.appendChild(mytable);
-    
+  var formData=readData();
+  if(selectedRow==null)
+  insertRecord(formData);
+  else
+  updateRecord(formData);
+  reset();
+}
+function readData()
+{
+  let person ={};
+person["first_name"] = (document.getElementById("txt_first") as HTMLInputElement).value;
+person["last_name"] = (document.getElementById("txt_last") as HTMLInputElement).value;
+person["email"]= (document.getElementById("txt_email")as HTMLInputElement).value;
+person["city"] = (document.getElementById("txt_city")as HTMLInputElement).value;
+person["Address"] = (document.getElementById("txt_Address")as HTMLInputElement).value;
+return person;
+}
+function insertRecord(data){
+  let table=document.getElementById("tab").getElementsByTagName('tbody')[0];
+let nrow=table.insertRow(table.rows.length);
+let cell1=nrow.insertCell(0);
+cell1.innerHTML= data.first_name;
+let cell2=nrow.insertCell(1);
+cell2.innerHTML=data.last_name
+let cell3=nrow.insertCell(2);
+cell3.innerHTML=data.email
+let cell4=nrow.insertCell(3);
+cell4.innerHTML=data.city
+let cell5=nrow.insertCell(4);
+cell5.innerHTML=data.Address;
+let cell6=nrow.insertCell(5);
+cell6.innerHTML=`<a class="pointer" onClick="onEdit(this);">Edit</a>`;
+}
+function onEdit(td)
+{
+selectedRow=td.parentElement.parentElement;
+(document.getElementById("txt_first") as HTMLLIElement).value=selectedRow.cells[0].innerHTML;
+(document.getElementById("txt_last") as HTMLLIElement).value=selectedRow.cells[1].innerHTML;
+(document.getElementById("txt_email") as HTMLLIElement).value=selectedRow.cells[2].innerHTML;
+(document.getElementById("txt_city") as HTMLLIElement).value=selectedRow.cells[3].innerHTML;
+(document.getElementById("txt_Address") as HTMLLIElement).value=selectedRow.cells[4].innerHTML;
 
 }
+function updateRecord(formData)
+{
+  selectedRow.cells[0].innerHTML=formData.first_name;
+  selectedRow.cells[1].innerHTML=formData.last_name;
+  selectedRow.cells[2].innerHTML=formData.email;
+  selectedRow.cells[3].innerHTML=formData.city;
+  selectedRow.cells[4].innerHTML=formData.Address;
+}
+function reset(){
+  (document.getElementById("txt_first")as HTMLLIElement).value=null;
+  (document.getElementById("txt_last")as HTMLLIElement).value= null;
+  (document.getElementById("txt_email") as HTMLLIElement).value=null;
+  (document.getElementById("txt_city") as HTMLLIElement).value=null;
+  (document.getElementById("txt_Address") as HTMLLIElement).value=null;
+  selectedRow = null;
+}
+
+
+
  
