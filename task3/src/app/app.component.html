@@ -1,0 +1,36 @@
+<form (submit)="preventDefault($event)">
+  <label>First Name</label><br/>
+  <input type ='text' id='txt_first' required>
+  <br>
+  <label>Last Name</label> <br>
+  <input type='text' id='txt_last' required>
+  <br>
+  <label>Email</label><br>
+  <input type='email' id='txt_email' required>
+  <br>
+  <label>City</label><br>
+  <input type='text' id='txt_city' required>
+  <br>
+  <label >Address</label><br>
+  <input type='text' id='txt_Address' required>
+  <br>
+  <button id='but' (click)="details($event);">Submit</button>
+  <button id='bt'>Cancel</button>
+  
+</form>
+<br>
+<ag-grid-angular
+#agGrid 
+style="width: 1150px; height: 750px;"
+class="ag-theme-balham"
+[columnDefs]="columnDefs"
+[defaultColDef]="defaultColDef"
+[rowData]="rowData"
+(gridReady)="onGridReady($event)"
+(cellClicked)="onCellClicked($event)"
+(rowEditingStarted)="onRowEditingStarted($event)"
+(rowEditingStopped)="onRowEditingStopped($event)"
+ editType="fullRow"
+[suppressClickEdit]="true"
+></ag-grid-angular>
+<router-outlet></router-outlet>

@@ -1,0 +1,27 @@
+#txt_first,#txt_last,#txt_email,#txt_city,#txt_Address
+{
+    width:235px;
+    height: 20px;
+    margin-left: 350px;
+    margin-bottom: 20px;
+    border-radius: 0.3px;
+    border-left: 7px solid green;
+}
+label,tr
+{
+    padding-left: 350px;
+}
+#but
+{
+    margin-left: 350px;
+}
+#bt
+{
+    margin-left: 50px;
+}
+.pointer
+{
+    cursor: pointer;
+    text-underline-position: below;
+    color: blue;
+}
