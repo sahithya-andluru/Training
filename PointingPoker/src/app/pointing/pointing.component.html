@@ -1,0 +1,18 @@
+<h3 style="margin-left: 380px;">Session Id: <h3 style="color:rgb(0, 119, 255);display: inline-block;">{{pid}}</h3></h3>
+<h2 style="margin-left: 380px; margin-top: 5px; color:rgb(0, 119, 255)">{{name}}</h2>
+<br>
+<button style="margin-left: 380px;"class="btn btn-primary">Clear Votes</button>
+<button style="margin-left: 50px;" class="btn btn-primary"> Show Votes</button>
+<br>
+<br>
+<div class="container pt-3" style="margin-left: 350px;">
+<div class="col-xs-3" *ngFor="let point of rowData">
+<button (click)="dispalyPoints(point.value)" style="background-color: cadetblue;width: 90px; margin-top: 5px;" class="btn btn-primary">{{point.label}}</button>   
+</div>
+</div>
+<h3 style="margin-left: 380px; display:inline;"><strong>Player</strong></h3>
+<h3 style="display: inline-block;margin-left: 250px; "><strong>Points</strong></h3>
+<br>
+<h4 style="margin-left: 380px; display: inline;">{{name}}</h4>
+<h4 style="display: inline-block;margin-left: 251px; ">{{points}}</h4>
+
