@@ -1,0 +1,24 @@
+
+.container {
+    max-width: 50%;
+    margin: 0 auto;
+    float: left;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  .container1{
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  
+
+
+  .container .content {
+    position:absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(255, 255, 255, 0.5); /* Black background with 0.5 opacity */
+    color: #155e80;
+    width: 50%;
+    text-align: center;
+    
+  }
+  

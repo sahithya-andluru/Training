@@ -1,0 +1,61 @@
+<html>
+    <body>
+<div class="container1">
+<h3 style="margin-left: 280px;">Session Id: <h3 style="color:rgb(0, 119, 255);display: inline-block;">{{pid}}</h3></h3>
+<b><h2 style=" font-weight:bold;margin-left: 280px; margin-top: 5px; color:rgb(0, 119, 255)">{{Name}}</h2></b>
+<br>
+<button type="button" style="margin-left: 280px;" (click)="clearVotes()" class="btn btn-primary">Clear Votes</button>
+<button  type="button" (click)="showVotes();"  style="margin-left: 50px;" class="btn btn-primary"> Show Votes</button>
+<br>
+<br>
+<div class="container pt-3" style="margin-left: 250px;">
+<div class="col-xs-3" *ngFor="let point of words">
+<button type="button" (click)="dispalyPoints(point.value)" style="width: 90px; margin-top: 5px;" class="btn btn-info">{{point.label}}</button>   
+</div>
+</div>
+<div class="row">
+        <table style="margin-left: 295px;">
+            <thead>
+                <tr>
+                    <th><h3><strong>Player</strong></h3></th>
+                    <th style="display: inline-block;margin-left: 200px; "><h3><strong>Points</strong></h3></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let p of users">
+                <tr>
+
+                    <td><span [hidden]="p.isShow" style="color: rgb(0, 139, 63); ">&#10004;</span><h4 style="display: inline-block;">&nbsp;{{p.name}}</h4></td>
+                    <td style="display: inline-block;margin-left: 200px; "><div *ngIf="p.show; then thenBlock; else elseBlock"></div>
+                        <ng-template #thenBlock><div class="box"></div></ng-template>
+                        <ng-template #elseBlock><h4>{{p.point}}</h4></ng-template></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+</div>
+<div class="container2">
+    <h3><b>Stats</b></h3>
+    <h3 style="display: inline;">Average : </h3>
+    <div *ngFor="let p of stats let i=index" style="display: inline-block; margin-left: 30px;">
+        <h3 *ngIf="i==0">{{p.avg}}</h3>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th><h3><strong>Points</strong></h3></th>
+                <th style="display: inline-block; margin-left: 30px;"><h3><strong>Votes</strong></h3></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let p of stats">
+            <tr>
+                <td style="margin-left: 20px;"><h4>&nbsp;&nbsp;{{p.point}}</h4></td>
+                <td style="display: inline-block; margin-left: 40px;"><h4>{{p.count}}</h4></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
+
