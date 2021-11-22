@@ -63,7 +63,7 @@ export class PointingComponent implements OnInit {
   }
   recieveStartSession() {
     this._dataService.recieveStatistics().subscribe((stats:any) => {
-      console.log(stats);
+      //console.log(stats);
       this.stats = stats;
     });
   }
