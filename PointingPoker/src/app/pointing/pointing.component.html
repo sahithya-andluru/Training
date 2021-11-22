@@ -1,18 +1,33 @@
 <h3 style="margin-left: 380px;">Session Id: <h3 style="color:rgb(0, 119, 255);display: inline-block;">{{pid}}</h3></h3>
-<h2 style="margin-left: 380px; margin-top: 5px; color:rgb(0, 119, 255)">{{name}}</h2>
+<b><h2 style=" font-weight:bold;margin-left: 380px; margin-top: 5px; color:rgb(0, 119, 255)">{{Name}}</h2></b>
 <br>
-<button style="margin-left: 380px;"class="btn btn-primary">Clear Votes</button>
-<button style="margin-left: 50px;" class="btn btn-primary"> Show Votes</button>
+<button style="margin-left: 380px;" (click)="clearVotes()" class="btn btn-primary">Clear Votes</button>
+<button  (click)="showVotes();"  style="margin-left: 50px;" class="btn btn-primary"> Show Votes</button>
 <br>
 <br>
 <div class="container pt-3" style="margin-left: 350px;">
-<div class="col-xs-3" *ngFor="let point of rowData">
-<button (click)="dispalyPoints(point.value)" style="background-color: cadetblue;width: 90px; margin-top: 5px;" class="btn btn-primary">{{point.label}}</button>   
+<div class="col-xs-3" *ngFor="let point of words">
+<button (click)="dispalyPoints(point.value)" style="width: 90px; margin-top: 5px;" class="btn btn-info">{{point.label}}</button>   
 </div>
 </div>
-<h3 style="margin-left: 380px; display:inline;"><strong>Player</strong></h3>
-<h3 style="display: inline-block;margin-left: 250px; "><strong>Points</strong></h3>
-<br>
-<h4 style="margin-left: 380px; display: inline;">{{name}}</h4>
-<h4 style="display: inline-block;margin-left: 251px; ">{{points}}</h4>
+<div class="row">
+        <table style="margin-left: 395px;">
+            <thead>
+                <tr>
+                    <th><h3><strong>Player</strong></h3></th>
+                    <th style="display: inline-block;margin-left: 250px; "><h3><strong>Points</strong></h3></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let p of users">
+                <tr>
+
+                    <td><span [hidden]="p.isShow" style="color: rgb(0, 139, 63); ">&#10004;</span><h4 style="display: inline-block;">{{p.name}}</h4></td>
+                    <td style="display: inline-block;margin-left: 250px; "><div *ngIf="p.show; then thenBlock; else elseBlock"></div>
+                        <ng-template #thenBlock><div class="box"></div></ng-template>
+                        <ng-template #elseBlock><h4>{{p.point}}</h4></ng-template></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+<script src="/socket.io/socket.io.js"></script>
 

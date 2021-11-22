@@ -4,23 +4,37 @@ import { DataServiceService } from '../data-service.service';
 @Component({
   selector: 'app-join-home',
   template: `
-  <h3 style="margin-left:350px;">Name:</h3>
-  <input type="text" #name class="span2 toolTipDefault" style="margin-left:350px; height:33px" id="txtName"  title="The name other players will see for you"> 
-  <input type="text" #idNo (keyup.enter)="update(idNo.value)"
-  (blur)="update(idNo.value)" class="span1" style="margin-left:5px; height: 33px;" name="JoinSessionId" placeholder="Session ID" />
-  <button (click)="setName(name.value);setPoints()" [routerLink]="['/points',value]" title="Join the session as a regular player" class="btn btn-primary" style=" margin-left:5px;">Join Session</button>
+  <form>
+  <h3 style="margin-left:350px;">Enter the details:</h3>
+  <br>
+  <input type="text"  style="margin-left:350px; height:33px " #idNo  (keyup.enter)="update(idNo.value)"(blur)="update(idNo.value)" 
+   name="JoinSessionId" placeholder="Session ID"  required/>
+  <input type="text" #name  id="txtName" style="margin-left:5px; height: 33px;"  
+  placeholder="Enter your Name" (keyup.enter)="updateName(name.value)"
+  (blur)="updateName(name.value)" title="The name other players will see for you" required /> 
+  
+  <button [disabled]="idNo.value.length<2" (click)="setName(name.value);" [routerLink]="['/pointing',{id,Name}]" 
+  title="Join the session as a regular player" class="btn btn-primary" style=" margin-left:5px;">Join Session</button>
+  </form>
+  
   `,
   styles: [
   ]
 })
 export class JoinHomeComponent implements OnInit {
 
-  value = '';
+  id = '';
+  Name='';
+  rowData:any;
   constructor(private _dataServiceService:DataServiceService) { }
 
   update(value: string) 
   { 
-    this.value = value; 
+    this.id = value; 
+  }
+  updateName(value: string) 
+  { 
+    this.Name = value; 
   }
   ngOnInit(): void {
   }
@@ -28,8 +42,9 @@ export class JoinHomeComponent implements OnInit {
     this._dataServiceService.setName(name);
 
   }
-  setPoints(){
-    this._dataServiceService.setPoints(this._dataServiceService.getPoints);
-  }
+ /* setPoints(){
+    this._dataServiceService.setPoints(this._dataServiceService.sharedPoints.subscribe(data => this.rowData = data));
+  }*/
 
 }
+

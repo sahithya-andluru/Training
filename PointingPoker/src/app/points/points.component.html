@@ -1,17 +1,21 @@
 
+
+<body>
 <h4 style="margin-left:350px;">Name:</h4>
-<input #name type="text" required style="margin-left:350px; height: 33px;"id="txtName"  title="The name other players will see for you" > 
-<button (click)="setName(name.value);setPoints()" [routerLink]="['/points',id]"  title="Join the session as a regular player" class="btn btn-primary" style="margin-left: 5px;">Create Session</button>
+<input #name type="text" required style="margin-left:350px; height: 33px;" (keyup.enter)="update(name.value)"(blur)="update(name.value)" id="txtName"  title="The name other players will see for you" > 
+<button (click)="setName(name.value);setPoints()" [routerLink]="['/pointing',{id,Name}]"  title="Join the session as a regular player" class="btn btn-primary" style="margin-left: 5px;">Create Session</button>
+
 <br>
 <br>
- <fieldset style="margin-left:350px; width:400px">
+
+ <!--<fieldset style="margin-left:350px; width:400px">
   <legend>Point Values</legend>
   <button (click)="onAddRow()" class="btn btn-primary">Add another value</button>
   <br>
  <br>
   <ag-grid-angular
 #agGrid 
-style="width: 400px; "
+style="width: 350px; "
 domLayout='autoHeight'
 class="ag-theme-balham"
 [columnDefs]="columnDefs"
@@ -21,5 +25,6 @@ class="ag-theme-balham"
 (cellClicked)="onCellClicked($event)"
  editType="fullRow"
 ></ag-grid-angular>
-  </fieldset>
+  </fieldset>-->
+
 

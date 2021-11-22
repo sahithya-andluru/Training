@@ -15,6 +15,7 @@ export class PointsComponent implements OnInit {
   public gridColumnApi:any;
   public sortingOrder:any;
   public rowData:any;
+  Name:any;
   public id:number=Math.trunc(Math.random()*(10000));
   actionCellRenderer(params:any) {
     let eGui = document.createElement("div");
@@ -34,7 +35,7 @@ export class PointsComponent implements OnInit {
        sortable:true,
       },
       {
-        Width: 10,
+        width: 150,
         cellRenderer: this.actionCellRenderer,
         editable: false,
         colId: "action"
@@ -90,6 +91,10 @@ export class PointsComponent implements OnInit {
   setName(name:string){
     this._dataServiceService.setName(name);
 
+  }
+  update(value: string) 
+  { 
+    this.Name = value; 
   }
   setPoints(){
     this._dataServiceService.setPoints(this.rowData);
