@@ -34,7 +34,7 @@ export class PointingComponent implements OnInit {
     {label:'?',value:'?'}
   ]
   users:any;
-  constructor(private _dataService:DataServiceService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private _dataService:DataServiceService,private route:ActivatedRoute) { }
   
   ngOnInit(){
     
